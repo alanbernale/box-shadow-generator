@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.css"
 import "toastify-js/src/toastify.css"
 import "./style.css"
 
+// The default properties of the box shadow
 let shadowProperties = {
   'offset-x' : 0,
   'offset-y' : 10,
@@ -18,6 +19,7 @@ let shadowProperties = {
 
 let defaultBoxShadow = `${shadowProperties['offset-x']}px ${shadowProperties['offset-y']}px ${shadowProperties['blur-radius']}px ${shadowProperties['spread-radius']}px rgba(${hexToRgb(shadowProperties['color'])},${shadowProperties['opacity']})`
 
+// Render the app to the document
 document.querySelector('#app').innerHTML = `
   <div class="application">
     <div class="application__content">
@@ -211,7 +213,7 @@ document.querySelector('#app').innerHTML = `
             box-shadow: ${defaultBoxShadow};
           </div>
           <button type="button" class="application__copy" id="application__copy">
-            Copiar
+            Copy
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
               <path
                 d="M112 128h160C280.8 128 288 120.8 288 112S280.8 96 272 96h-24.88C252.6 86.55 256 75.72 256 64c0-35.35-28.65-64-64-64S128 28.65 128 64c0 11.72 3.379 22.55 8.877 32H112C103.2 96 96 103.2 96 112S103.2 128 112 128zM192 32c17.64 0 32 14.36 32 32s-14.36 32-32 32S160 81.64 160 64S174.4 32 192 32zM320 64c-8.844 0-16 7.156-16 16S311.2 96 320 96c17.64 0 32 14.34 32 32v320c0 17.66-14.36 32-32 32H64c-17.64 0-32-14.34-32-32V128c0-17.66 14.36-32 32-32c8.844 0 16-7.156 16-16S72.84 64 64 64C28.7 64 0 92.72 0 128v320c0 35.28 28.7 64 64 64h256c35.3 0 64-28.72 64-64V128C384 92.72 355.3 64 320 64zM72 256c0 13.25 10.75 24 24 24c13.26 0 24-10.75 24-24c0-13.26-10.74-24-24-24C82.75 232 72 242.7 72 256zM96 328c-13.25 0-24 10.74-24 24c0 13.25 10.75 24 24 24c13.26 0 24-10.75 24-24C120 338.7 109.3 328 96 328zM304 240h-128C167.2 240 160 247.2 160 256s7.156 16 16 16h128C312.8 272 320 264.8 320 256S312.8 240 304 240zM304 336h-128C167.2 336 160 343.2 160 352s7.156 16 16 16h128c8.844 0 16-7.156 16-16S312.8 336 304 336z"
@@ -222,12 +224,16 @@ document.querySelector('#app').innerHTML = `
       </div>
     </div>
     <div class="application__footer">
-      <span>Desarrollado por</span>
+      <span>Developed by</span>
       <img src="/isologo-full-bernaldev.svg" alt="" />
     </div>
   </div>
 `
-
+/**
+ * Update the box shadow style and code
+ * @param propertyRef
+ * @param value
+ */
 const updateBoxShadow = (propertyRef, value) => {
   const applicationBox = document.getElementById('application__box'),
     applicationCode = document.getElementById('application__code')
@@ -236,7 +242,14 @@ const updateBoxShadow = (propertyRef, value) => {
   applicationCode.innerText = `box-shadow: ${shadowProperties['offset-x']}px ${shadowProperties['offset-y']}px ${shadowProperties['blur-radius']}px ${shadowProperties['spread-radius']}px rgba(${hexToRgb(shadowProperties['color'])},${shadowProperties['opacity']})`
 }
 
-const modifyProperty = (propertyRange, propertyText, propertyRef) => {
+/**
+ * Applies an event listener to the defined property and executes the action on changes
+ * @param propertyRef
+ */
+const modifyProperty = (propertyRef) => {
+  const propertyRange = document.getElementById(propertyRef + '-range'),
+    propertyText = document.getElementById(propertyRef + '-text')
+
   propertyRange.addEventListener('input', e => {
     propertyText.value = e.currentTarget.value
     updateBoxShadow(propertyRef, e.currentTarget.value)
@@ -247,28 +260,16 @@ const modifyProperty = (propertyRange, propertyText, propertyRef) => {
   })
 }
 
-const offsetXRange = document.getElementById('offset-x-range'),
-  offsetXText = document.getElementById('offset-x-text'),
-  offsetYRange = document.getElementById('offset-y-range'),
-  offsetYText = document.getElementById('offset-y-text'),
-  blurRadiusRange = document.getElementById('blur-radius-range'),
-  blurRadiusText = document.getElementById('blur-radius-text'),
-  spreadRadiusRange = document.getElementById('spread-radius-range'),
-  spreadRadiusText = document.getElementById('spread-radius-text'),
-  colorRange = document.getElementById('color-range'),
-  colorText = document.getElementById('color-text'),
-  opacityRange = document.getElementById('opacity-range'),
-  opacityText = document.getElementById('opacity-text')
+// The properties that will be modifiable are defined
+modifyProperty('offset-x')
+modifyProperty('offset-y')
+modifyProperty('blur-radius')
+modifyProperty('spread-radius')
+modifyProperty('color')
+modifyProperty('opacity')
 
-modifyProperty(offsetXRange, offsetXText, 'offset-x')
-modifyProperty(offsetYRange, offsetYText, 'offset-y')
-modifyProperty(blurRadiusRange, blurRadiusText, 'blur-radius')
-modifyProperty(spreadRadiusRange, spreadRadiusText, 'spread-radius')
-modifyProperty(colorRange, colorText, 'color')
-modifyProperty(opacityRange, opacityText, 'opacity')
-
+// An event listener is applied to copy the resulting code to the clipboard
 let applicationCopy = document.getElementById('application__copy')
-
 applicationCopy.addEventListener('click', () => {
   navigator.clipboard.writeText(`box-shadow: ${shadowProperties['offset-x']}px ${shadowProperties['offset-y']}px ${shadowProperties['blur-radius']}px ${shadowProperties['spread-radius']}px rgba(${hexToRgb(shadowProperties['color'])},${shadowProperties['opacity']})`)
     .then(() => {
