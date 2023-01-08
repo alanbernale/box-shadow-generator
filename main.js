@@ -1,5 +1,22 @@
-import 'bootstrap/dist/css/bootstrap.css'
-import './style.css'
+// Import JS libraries
+import Toastify from "toastify-js"
+import hexToRgb from "./hexToRgb"
+
+// Import CSS files
+import "bootstrap/dist/css/bootstrap.css"
+import "toastify-js/src/toastify.css"
+import "./style.css"
+
+let shadowProperties = {
+  'offset-x' : 0,
+  'offset-y' : 10,
+  'blur-radius' : 15,
+  'spread-radius' : -3,
+  'color' : '#000000',
+  'opacity' : 0.1
+}
+
+let defaultBoxShadow = `${shadowProperties['offset-x']}px ${shadowProperties['offset-y']}px ${shadowProperties['blur-radius']}px ${shadowProperties['spread-radius']}px rgba(${hexToRgb(shadowProperties['color'])},${shadowProperties['opacity']})`
 
 document.querySelector('#app').innerHTML = `
   <div class="application">
@@ -15,11 +32,11 @@ document.querySelector('#app').innerHTML = `
               <input
                 type="number"
                 class="form-control"
-                name="offset-x-value"
-                id="offset-x-value"
+                name="offset-x-text"
+                id="offset-x-text"
                 min="-100"
                 max="100"
-                value="0"
+                value="${shadowProperties['offset-x']}"
               />
               <span>px.</span>
             </div>
@@ -28,11 +45,11 @@ document.querySelector('#app').innerHTML = `
             <input
               type="range"
               class="form-range"
-              name="offset-x"
-              id="offset-x"
+              name="offset-x-range"
+              id="offset-x-range"
               min="-100"
               max="100"
-              value="0"
+              value="${shadowProperties['offset-x']}"
             />
           </div>
         </div>
@@ -44,11 +61,11 @@ document.querySelector('#app').innerHTML = `
               <input
                 type="number"
                 class="form-control"
-                name="offset-y-value"
-                id="offset-y-value"
+                name="offset-y-text"
+                id="offset-y-text"
                 min="-100"
                 max="100"
-                value="10"
+                value="${shadowProperties['offset-y']}"
               />
               <span>px.</span>
             </div>
@@ -57,11 +74,11 @@ document.querySelector('#app').innerHTML = `
             <input
               type="range"
               class="form-range"
-              name="offset-y"
-              id="offset-y"
+              name="offset-y-range"
+              id="offset-y-range"
               min="-100"
               max="100"
-              value="10"
+              value="${shadowProperties['offset-y']}"
             />
           </div>
         </div>
@@ -73,11 +90,11 @@ document.querySelector('#app').innerHTML = `
               <input
                 type="number"
                 class="form-control"
-                name="blur-radius-value"
-                id="blur-radius-value"
+                name="blur-radius-text"
+                id="blur-radius-text"
                 min="0"
                 max="100"
-                value="15"
+                value="${shadowProperties['blur-radius']}"
               />
               <span>px.</span>
             </div>
@@ -86,11 +103,11 @@ document.querySelector('#app').innerHTML = `
             <input
               type="range"
               class="form-range"
-              name="blur-radius"
-              id="blur-radius"
+              name="blur-radius-range"
+              id="blur-radius-range"
               min="0"
               max="100"
-              value="15"
+              value="${shadowProperties['blur-radius']}"
             />
           </div>
         </div>
@@ -102,11 +119,11 @@ document.querySelector('#app').innerHTML = `
               <input
                 type="number"
                 class="form-control"
-                name="spread-radius-value"
-                id="spread-radius-value"
+                name="spread-radius-text"
+                id="spread-radius-text"
                 min="-100"
                 max="100"
-                value="-3"
+                value="${shadowProperties['spread-radius']}"
               />
               <span>px.</span>
             </div>
@@ -115,11 +132,11 @@ document.querySelector('#app').innerHTML = `
             <input
               type="range"
               class="form-range"
-              name="spread-radius"
-              id="spread-radius"
+              name="spread-radius-range"
+              id="spread-radius-range"
               min="-100"
               max="100"
-              value="-3"
+              value="${shadowProperties['spread-radius']}"
             />
           </div>
         </div>
@@ -132,10 +149,10 @@ document.querySelector('#app').innerHTML = `
                 <input
                   type="text"
                   class="form-control"
-                  name="color-value"
-                  id="color-value"
+                  name="color-text"
+                  id="color-text"
                   size="4"
-                  value="#000000"
+                  value="${shadowProperties['color']}"
                 />
               </div>
             </div>
@@ -143,9 +160,9 @@ document.querySelector('#app').innerHTML = `
               <input
                 type="color"
                 class="form-control form-control-color"
-                name="color"
-                id="color"
-                value="#000000"
+                name="color-range"
+                id="color-range"
+                value="${shadowProperties['color']}"
               />
             </div>
           </div>
@@ -157,11 +174,11 @@ document.querySelector('#app').innerHTML = `
                 <input
                   type="number"
                   class="form-control"
-                  name="opacity-value"
-                  id="opacity-value"
+                  name="opacity-text"
+                  id="opacity-text"
                   min="0"
                   max="1"
-                  value="0.1"
+                  value="${shadowProperties['opacity']}"
                   step="0.01"
                 />
               </div>
@@ -170,11 +187,11 @@ document.querySelector('#app').innerHTML = `
               <input
                 type="range"
                 class="form-range"
-                name="opacity"
-                id="opacity"
+                name="opacity-range"
+                id="opacity-range"
                 min="0"
                 max="1"
-                value="0.1"
+                value="${shadowProperties['opacity']}"
                 step="0.01"
               />
             </div>
@@ -186,14 +203,14 @@ document.querySelector('#app').innerHTML = `
           <div
             class="application__box"
             id="application__box"
-            style="box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1)"
+            style="box-shadow: ${defaultBoxShadow}"
           ></div>
         </div>
         <div class="application__generated">
-          <div class="application__code">
-            box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+          <div class="application__code" id="application__code">
+            box-shadow: ${defaultBoxShadow};
           </div>
-          <button type="button" class="application__copy">
+          <button type="button" class="application__copy" id="application__copy">
             Copiar
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
               <path
@@ -210,3 +227,69 @@ document.querySelector('#app').innerHTML = `
     </div>
   </div>
 `
+
+const updateBoxShadow = (propertyRef, value) => {
+  const applicationBox = document.getElementById('application__box'),
+    applicationCode = document.getElementById('application__code')
+  shadowProperties[propertyRef] = value
+  applicationBox.style.boxShadow = `${shadowProperties['offset-x']}px ${shadowProperties['offset-y']}px ${shadowProperties['blur-radius']}px ${shadowProperties['spread-radius']}px rgba(${hexToRgb(shadowProperties['color'])},${shadowProperties['opacity']})`
+  applicationCode.innerText = `box-shadow: ${shadowProperties['offset-x']}px ${shadowProperties['offset-y']}px ${shadowProperties['blur-radius']}px ${shadowProperties['spread-radius']}px rgba(${hexToRgb(shadowProperties['color'])},${shadowProperties['opacity']})`
+}
+
+const modifyProperty = (propertyRange, propertyText, propertyRef) => {
+  propertyRange.addEventListener('input', e => {
+    propertyText.value = e.currentTarget.value
+    updateBoxShadow(propertyRef, e.currentTarget.value)
+  })
+  propertyText.addEventListener('input', e => {
+    propertyRange.value = e.currentTarget.value
+    updateBoxShadow(propertyRef, e.currentTarget.value)
+  })
+}
+
+const offsetXRange = document.getElementById('offset-x-range'),
+  offsetXText = document.getElementById('offset-x-text'),
+  offsetYRange = document.getElementById('offset-y-range'),
+  offsetYText = document.getElementById('offset-y-text'),
+  blurRadiusRange = document.getElementById('blur-radius-range'),
+  blurRadiusText = document.getElementById('blur-radius-text'),
+  spreadRadiusRange = document.getElementById('spread-radius-range'),
+  spreadRadiusText = document.getElementById('spread-radius-text'),
+  colorRange = document.getElementById('color-range'),
+  colorText = document.getElementById('color-text'),
+  opacityRange = document.getElementById('opacity-range'),
+  opacityText = document.getElementById('opacity-text')
+
+modifyProperty(offsetXRange, offsetXText, 'offset-x')
+modifyProperty(offsetYRange, offsetYText, 'offset-y')
+modifyProperty(blurRadiusRange, blurRadiusText, 'blur-radius')
+modifyProperty(spreadRadiusRange, spreadRadiusText, 'spread-radius')
+modifyProperty(colorRange, colorText, 'color')
+modifyProperty(opacityRange, opacityText, 'opacity')
+
+let applicationCopy = document.getElementById('application__copy')
+
+applicationCopy.addEventListener('click', () => {
+  navigator.clipboard.writeText(`box-shadow: ${shadowProperties['offset-x']}px ${shadowProperties['offset-y']}px ${shadowProperties['blur-radius']}px ${shadowProperties['spread-radius']}px rgba(${hexToRgb(shadowProperties['color'])},${shadowProperties['opacity']})`)
+    .then(() => {
+      Toastify({
+        text: "😁 Se copió el código al portapapeles.",
+        close: true,
+        duration: 3000,
+        style: {
+          background: "#E82077",
+        }
+      }).showToast();
+    })
+    .catch(err => {
+      Toastify({
+        text: "⚠️ ¡Ups! Sucedió algo, inténtalo nuevamente.",
+        close: true,
+        duration: 3000,
+        style: {
+          background: "red",
+        }
+      }).showToast();
+      console.error(err.message)
+    })
+})
