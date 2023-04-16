@@ -1,33 +1,180 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '../public/vite.svg'
+import { IconClipboardCheck } from '@tabler/icons-react'
+import GithubCorner from 'react-github-corner'
 import './App.css'
 
 function App () {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className='App'>
-      <div>
-        <a href='https://vitejs.dev' target='_blank' rel='noreferrer'>
-          <img src={viteLogo} className='logo' alt='Vite logo' />
-        </a>
-        <a href='https://reactjs.org' target='_blank' rel='noreferrer'>
-          <img src={reactLogo} className='logo react' alt='React logo' />
-        </a>
+    <div className='application'>
+      <div className='application__wrapper'>
+        <div className='application__content'>
+          <div className='application__properties'>
+            <div className='application__header'>
+              <h1 className='application__title'>Box Shadow Generator</h1>
+            </div>
+            <div className='property'>
+              <div className='property__header'>
+                <p className='property__name'>Horizontal offset</p>
+                <div className='property__input'>
+                  <input
+                    type='number'
+                    className='form-control'
+                    min='-100'
+                    max='100'
+                  />
+                  <span>px.</span>
+                </div>
+              </div>
+              <div className='property__range'>
+                <input
+                  type='range'
+                  className='form-range'
+                  min='-100'
+                  max='100'
+                />
+              </div>
+            </div>
+            <div className='property'>
+              <div className='property__header'>
+                <p className='property__name'>Vertical offset</p>
+                <div className='property__input'>
+                  <input
+                    type='number'
+                    className='form-control'
+                    min='-100'
+                    max='100'
+                  />
+                  <span>px.</span>
+                </div>
+              </div>
+              <div className='property__range'>
+                <input
+                  type='range'
+                  className='form-range'
+                  min='-100'
+                  max='100'
+                />
+              </div>
+            </div>
+            <div className='property'>
+              <div className='property__header'>
+                <p className='property__name'>Blur radius</p>
+                <div className='property__input'>
+                  <input
+                    type='number'
+                    className='form-control'
+                    min='0'
+                    max='100'
+                  />
+                  <span>px.</span>
+                </div>
+              </div>
+              <div className='property__range'>
+                <input
+                  type='range'
+                  className='form-range'
+                  min='0'
+                  max='100'
+                />
+              </div>
+            </div>
+            <div className='property'>
+              <div className='property__header'>
+                <p className='property__name'>Spread radius</p>
+                <div className='property__input'>
+                  <input
+                    type='number'
+                    className='form-control'
+                    min='-100'
+                    max='100'
+                  />
+                  <span>px.</span>
+                </div>
+              </div>
+              <div className='property__range'>
+                <input
+                  type='range'
+                  className='form-range'
+                  min='-100'
+                  max='100'
+                />
+              </div>
+            </div>
+            <div className='property__group'>
+              <div className='property'>
+                <div className='property__header'>
+                  <p className='property__name'>Color</p>
+                  <div className='property__input'>
+                    <input
+                      type='text'
+                      className='form-control'
+                      size='4'
+                    />
+                  </div>
+                </div>
+                <div className='property__color'>
+                  <input
+                    type='color'
+                    className='form-color'
+                  />
+                </div>
+              </div>
+
+              <div className='property'>
+                <div className='property__header'>
+                  <p className='property__name'>Opacity</p>
+                  <div className='property__input'>
+                    <input
+                      type='number'
+                      className='form-control'
+                      min='0'
+                      max='1'
+                      step='0.01'
+                    />
+                  </div>
+                </div>
+                <div className='property__range'>
+                  <input
+                    type='range'
+                    className='form-range'
+                    min='0'
+                    max='1'
+                    step='0.01'
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className='application__result'>
+            <div className='application__preview'>
+              <div className='application__box' />
+            </div>
+            <div className='application__generated'>
+              <div className='application__code'>
+                box-shadow:
+              </div>
+              <button type='button' className='application__copy'>
+                Copy <IconClipboardCheck />
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className='application__footer'>
+          <div className='application__credits'>
+            <span>Developed by</span>
+            <a href='https://alanbernal.pe'>
+              <img src='/isologo-full-bernaldev.svg' alt='Isologo Alan Bernal Dev.' />
+            </a>
+          </div>
+          <div className='application__mode'>
+            <span>Modo oscuro</span>
+            <label className='color-mode'>
+              <input type='checkbox' className='color-mode__checkbox' />
+              <span className='color-mode__slider' />
+            </label>
+          </div>
+        </div>
+        <GithubCorner href='https://github.com/alanbernale/box-shadow-generator' bannerColor='#e82077' />
       </div>
-      <h1>Vite + React</h1>
-      <div className='card'>
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className='read-the-docs'>
-        Click on the Vite and React logos to learn more
-      </p>
     </div>
   )
 }
