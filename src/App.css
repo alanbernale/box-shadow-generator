@@ -10,8 +10,8 @@
   padding-top: 2rem;
   padding-bottom: 2rem;
   font-family: "Poppins", sans-serif;
-  color: var(--theme-color-2);
   background-color: var(--theme-gray-2);
+  transition: all 150ms ease-in-out;
 }
 
 @media screen and (min-width: 992px) {
@@ -51,6 +51,7 @@
   width: 100%;
   padding: 2rem;
   background-color: #ffffff;
+  transition: all 150ms ease-in-out;
 }
 
 @media screen and (min-width: 992px) {
@@ -96,6 +97,7 @@
   height: var(--preview-height);
   background-color: var(--theme-gray-1);
   border-bottom: var(--default-border);
+  transition: all 150ms ease-in-out;
 }
 
 @media screen and (min-width: 992px) {
@@ -110,6 +112,7 @@
   height: var(--box-size);
   border-radius: 1rem;
   background-color: #ffffff;
+  transition: all 150ms ease-in-out;
 }
 
 .application__generated {
@@ -117,13 +120,16 @@
   gap: 0.5rem;
   padding: 1rem;
   background-color: #ffffff;
+  transition: all 150ms ease-in-out;
 }
 
 .application__code {
   flex-grow: 1;
   padding: 0.5rem 1rem;
+  color: var(--theme-color-2);
   border: var(--default-border);
   border-radius: 0.375rem;
+  transition: all 150ms ease-in-out;
 }
 
 .application__copy {
@@ -135,7 +141,7 @@
   border-radius: 0.375rem;
   padding: 0.5rem 1rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 150ms ease;
 }
 
 .application__copy:hover {
@@ -167,6 +173,8 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  color: var(--theme-color-2);
+  transition: all 150ms ease-in-out;
 }
 
 .application__credits .logo-full,
@@ -186,6 +194,8 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  color: var(--theme-color-2);
+  transition: all 150ms ease-in-out;
 }
 
 /* ========================================
@@ -225,6 +235,8 @@
 
 .property__name {
   flex: 1 0 auto;
+  color: var(--theme-color-2);
+  transition: all 150ms ease;
 }
 
 .property__input {
@@ -233,6 +245,8 @@
   align-items: center;
   gap: 0.5rem;
   flex: 1 0 auto;
+  color: var(--theme-color-2);
+  transition: all 150ms ease;
 }
 
 .property__color input {
@@ -244,11 +258,6 @@
 ======================================== */
 .application.dark {
   background-color: var(--theme-dark-1);
-  color: #ffffff;
-}
-
-.application.dark .application__properties {
-  background-color: var(--theme-dark-2);
 }
 
 .application.dark .form-control {
@@ -261,7 +270,12 @@
   background-color: var(--theme-dark-3);
 }
 
+.form-range::-moz-range-track {
+  background-color: var(--theme-dark-3);
+}
+
 .application.dark .application__properties {
+  background-color: var(--theme-dark-2);
   border-color: var(--theme-dark-1);
 }
 
@@ -279,6 +293,7 @@
 }
 
 .application.dark .application__code {
+  color: #ffffff;
   background-color: var(--theme-dark-3);
   border-color: var(--theme-dark-3);
 }
@@ -294,12 +309,28 @@
   border-color: var(--theme-dark-4);
 }
 
+.application.dark .application__credits {
+  color: #ffffff;
+}
+
 .application.dark .application__credits .logo-full {
   display: none;
 }
 
 .application.dark .application__credits .logo-white {
   display: block;
+}
+
+.application.dark .application__mode {
+  color: #ffffff;
+}
+
+.application.dark .property__name {
+  color: #ffffff;
+}
+
+.application.dark .property__input {
+  color: #ffffff;
 }
 
 .application.dark .color-mode__slider {

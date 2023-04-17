@@ -1,10 +1,15 @@
+import { useState } from 'react'
 import { IconClipboardCheck } from '@tabler/icons-react'
 import GithubCorner from 'react-github-corner'
 import './App.css'
 
 function App () {
+  const [dark, setDark] = useState(false)
+
+  const handleChange = () => setDark(!dark)
+
   return (
-    <div className='application dark'>
+    <div className={dark ? 'application dark' : 'application'}>
       <div className='application__wrapper'>
         <div className='application__content'>
           <div className='application__properties'>
@@ -169,7 +174,12 @@ function App () {
           <div className='application__mode'>
             <span>Dark theme</span>
             <label className='color-mode'>
-              <input type='checkbox' className='color-mode__checkbox' />
+              <input
+                type='checkbox'
+                className='color-mode__checkbox'
+                checked={dark}
+                onChange={handleChange}
+              />
               <span className='color-mode__slider' />
             </label>
           </div>
