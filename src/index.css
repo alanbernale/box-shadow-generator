@@ -6,6 +6,10 @@
   --theme-color-2: #1c1f2a;
   --theme-gray-1: #f3f4f6;
   --theme-gray-2: #e2e0e6;
+  --theme-dark-1: #13151a;
+  --theme-dark-2: #262b33;
+  --theme-dark-3: #39404d;
+  --theme-dark-4: #4d5666;
   --aplication-width: 90%;
   --properties-width: 500px;
   --result-width: 600px;
@@ -20,10 +24,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-.github-custom {
-  fill: var(--theme-color-1);
 }
 
 /* ========================================
@@ -55,7 +55,7 @@
 }
 
 .form-control[type="number"] {
-  width: 60px;
+  width: 62px;
 }
 
 .form-control[type="text"] {

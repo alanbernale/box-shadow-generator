@@ -37,7 +37,6 @@
   margin-bottom: 1.25rem;
   border-radius: 1rem;
   overflow: hidden;
-  background-color: #ffffff;
   box-shadow: 0 10px 20px -3px rgba(0, 0, 0, 0.05);
 }
 
@@ -51,6 +50,7 @@
   order: 2;
   width: 100%;
   padding: 2rem;
+  background-color: #ffffff;
 }
 
 @media screen and (min-width: 992px) {
@@ -63,7 +63,7 @@
 
 .application__header {
   margin-bottom: 1rem;
-  padding-bottom: 1rem;
+  padding-bottom: 2rem;
   color: var(--theme-color-1);
   border-bottom: var(--default-border);
 }
@@ -116,6 +116,7 @@
   display: flex;
   gap: 0.5rem;
   padding: 1rem;
+  background-color: #ffffff;
 }
 
 .application__code {
@@ -168,9 +169,17 @@
   gap: 0.5rem;
 }
 
-.application__credits img {
-  display: block;
+.application__credits .logo-full,
+.application__credits .logo-white {
   height: 2rem;
+}
+
+.application__credits .logo-full {
+  display: block;
+}
+
+.application__credits .logo-white {
+  display: none;
 }
 
 .application__mode {
@@ -228,4 +237,75 @@
 
 .property__color input {
   width: 100%;
+}
+
+/* ========================================
+  Dark Mode
+======================================== */
+.application.dark {
+  background-color: var(--theme-dark-1);
+  color: #ffffff;
+}
+
+.application.dark .application__properties {
+  background-color: var(--theme-dark-2);
+}
+
+.application.dark .form-control {
+  color: #ffffff;
+  background-color: var(--theme-dark-3);
+  border-color: var(--theme-dark-3);
+}
+
+.application.dark .form-range::-webkit-slider-runnable-track {
+  background-color: var(--theme-dark-3);
+}
+
+.application.dark .application__properties {
+  border-color: var(--theme-dark-1);
+}
+
+.application.dark .application__preview {
+  background-color: var(--theme-dark-3);
+  border-color: var(--theme-dark-1);
+}
+
+.application.dark .application__box {
+  background-color: var(--theme-dark-4);
+}
+
+.application.dark .application__generated {
+  background-color: var(--theme-dark-2);
+}
+
+.application.dark .application__code {
+  background-color: var(--theme-dark-3);
+  border-color: var(--theme-dark-3);
+}
+
+.application.dark .application__copy {
+  color: #ffffff;
+  background-color: var(--theme-dark-3);
+  border-color: var(--theme-dark-3);
+}
+
+.application.dark .application__copy:hover {
+  background-color: var(--theme-dark-4);
+  border-color: var(--theme-dark-4);
+}
+
+.application.dark .application__credits .logo-full {
+  display: none;
+}
+
+.application.dark .application__credits .logo-white {
+  display: block;
+}
+
+.application.dark .color-mode__slider {
+  background-color: var(--theme-dark-2);
+}
+
+.application.dark .color-mode__slider:before {
+  background-color: #ffffff;
 }

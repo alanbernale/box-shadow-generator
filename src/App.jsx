@@ -4,7 +4,7 @@ import './App.css'
 
 function App () {
   return (
-    <div className='application'>
+    <div className='application dark'>
       <div className='application__wrapper'>
         <div className='application__content'>
           <div className='application__properties'>
@@ -162,11 +162,12 @@ function App () {
           <div className='application__credits'>
             <span>Developed by</span>
             <a href='https://alanbernal.pe'>
-              <img src='/isologo-full-bernaldev.svg' alt='Isologo Alan Bernal Dev.' />
+              <img src='/isologo-full-bernaldev.svg' className='logo-full' alt='Isologo Alan Bernal Dev.' />
+              <img src='/isologo-white-bernaldev.svg' className='logo-white' alt='Isologo Alan Bernal Dev.' />
             </a>
           </div>
           <div className='application__mode'>
-            <span>Modo oscuro</span>
+            <span>Dark theme</span>
             <label className='color-mode'>
               <input type='checkbox' className='color-mode__checkbox' />
               <span className='color-mode__slider' />
