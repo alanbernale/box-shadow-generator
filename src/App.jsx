@@ -1,48 +1,30 @@
 import { useState } from 'react'
-import { IconClipboardCheck } from '@tabler/icons-react'
 import GithubCorner from 'react-github-corner'
-import hexToRgb from './hexToRgb'
-import './App.css'
-import Toastify from 'toastify-js'
-import 'toastify-js/src/toastify.css'
+import CopyButton from './components/CopyButton'
+import hexToRgb from './utils/hexToRgb'
+import './styles/App.css'
 
 function App () {
   const [dark, setDark] = useState(false)
-  const [offsetX, setOffsetX] = useState(0)
-  const [offsetY, setOffsetY] = useState(10)
-  const [blurRadius, setBlurRadius] = useState(15)
-  const [spreadRadius, setSpreadRadius] = useState(-3)
-  const [color, setColor] = useState('#000000')
-  const [opacity, setOpacity] = useState(0.1)
+
+  const [boxShadow, setBoxShadow] = useState({
+    offsetX: 0,
+    offsetY: 10,
+    blurRadius: 15,
+    spreadRadius: -3,
+    color: '#000000',
+    opacity: 0.1
+  })
 
   const handleDark = () => setDark(!dark)
-  const handleOffsetX = (e) => setOffsetX(e.target.value)
-  const handleOffsetY = (e) => setOffsetY(e.target.value)
-  const handleBlurRadius = (e) => setBlurRadius(e.target.value)
-  const handleSpreadRadius = (e) => setSpreadRadius(e.target.value)
-  const handleColor = (e) => setColor(e.target.value)
-  const handleOpacity = (e) => setOpacity(e.target.value)
+  const handleOffsetX = (e) => setBoxShadow({ ...boxShadow, offsetX: e.target.value })
+  const handleOffsetY = (e) => setBoxShadow({ ...boxShadow, offsetY: e.target.value })
+  const handleBlurRadius = (e) => setBoxShadow({ ...boxShadow, blurRadius: e.target.value })
+  const handleSpreadRadius = (e) => setBoxShadow({ ...boxShadow, spreadRadius: e.target.value })
+  const handleColor = (e) => setBoxShadow({ ...boxShadow, color: e.target.value })
+  const handleOpacity = (e) => setBoxShadow({ ...boxShadow, opacity: e.target.value })
 
-  const boxShadow = offsetX + 'px' + ' ' + offsetY + 'px' + ' ' + blurRadius + 'px' + ' ' + spreadRadius + 'px' + ' rgba(' + hexToRgb(color) + ',' + opacity + ')'
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(boxShadow)
-      .then(() => {
-        Toastify({
-          text: '😁 Se copió el código al portapapeles.',
-          position: 'left',
-          className: 'toastify-success'
-        }).showToast()
-      })
-      .catch(err => {
-        console.error(err.message)
-        Toastify({
-          text: '⚠️ ¡Ups! Sucedió algo, inténtalo nuevamente.',
-          position: 'left',
-          className: 'toastify-error'
-        }).showToast()
-      })
-  }
+  const boxShadowResult = boxShadow.offsetX + 'px' + ' ' + boxShadow.offsetY + 'px' + ' ' + boxShadow.blurRadius + 'px' + ' ' + boxShadow.spreadRadius + 'px' + ' rgba(' + hexToRgb(boxShadow.color) + ',' + boxShadow.opacity + ')'
 
   return (
     <div className={dark ? 'application dark' : 'application'}>
@@ -59,7 +41,7 @@ function App () {
                   <input
                     type='number'
                     className='form-control'
-                    value={offsetX}
+                    value={boxShadow.offsetX}
                     min='-100'
                     max='100'
                     onChange={handleOffsetX}
@@ -71,7 +53,7 @@ function App () {
                 <input
                   type='range'
                   className='form-range'
-                  value={offsetX}
+                  value={boxShadow.offsetX}
                   min='-100'
                   max='100'
                   onChange={handleOffsetX}
@@ -85,7 +67,7 @@ function App () {
                   <input
                     type='number'
                     className='form-control'
-                    value={offsetY}
+                    value={boxShadow.offsetY}
                     min='-100'
                     max='100'
                     onChange={handleOffsetY}
@@ -97,7 +79,7 @@ function App () {
                 <input
                   type='range'
                   className='form-range'
-                  value={offsetY}
+                  value={boxShadow.offsetY}
                   min='-100'
                   max='100'
                   onChange={handleOffsetY}
@@ -111,7 +93,7 @@ function App () {
                   <input
                     type='number'
                     className='form-control'
-                    value={blurRadius}
+                    value={boxShadow.blurRadius}
                     min='0'
                     max='100'
                     onChange={handleBlurRadius}
@@ -123,7 +105,7 @@ function App () {
                 <input
                   type='range'
                   className='form-range'
-                  value={blurRadius}
+                  value={boxShadow.blurRadius}
                   min='0'
                   max='100'
                   onChange={handleBlurRadius}
@@ -137,7 +119,7 @@ function App () {
                   <input
                     type='number'
                     className='form-control'
-                    value={spreadRadius}
+                    value={boxShadow.spreadRadius}
                     min='-100'
                     max='100'
                     onChange={handleSpreadRadius}
@@ -149,7 +131,7 @@ function App () {
                 <input
                   type='range'
                   className='form-range'
-                  value={spreadRadius}
+                  value={boxShadow.spreadRadius}
                   min='-100'
                   max='100'
                   onChange={handleSpreadRadius}
@@ -164,7 +146,7 @@ function App () {
                     <input
                       type='text'
                       className='form-control'
-                      value={color}
+                      value={boxShadow.color}
                       size='4'
                       onChange={handleColor}
                     />
@@ -174,7 +156,7 @@ function App () {
                   <input
                     type='color'
                     className='form-color'
-                    value={color}
+                    value={boxShadow.color}
                     onChange={handleColor}
                   />
                 </div>
@@ -187,7 +169,7 @@ function App () {
                     <input
                       type='number'
                       className='form-control'
-                      value={opacity}
+                      value={boxShadow.opacity}
                       min='0'
                       max='1'
                       step='0.01'
@@ -199,7 +181,7 @@ function App () {
                   <input
                     type='range'
                     className='form-range'
-                    value={opacity}
+                    value={boxShadow.opacity}
                     min='0'
                     max='1'
                     step='0.01'
@@ -211,15 +193,13 @@ function App () {
           </div>
           <div className='application__result'>
             <div className='application__preview'>
-              <div className='application__box' style={{ boxShadow }} />
+              <div className='application__box' style={{ boxShadow: boxShadowResult }} />
             </div>
             <div className='application__generated'>
               <div className='application__code'>
-                box-shadow: {boxShadow}
+                box-shadow: {boxShadowResult}
               </div>
-              <button type='button' className='application__copy' onClick={handleCopy}>
-                Copy <IconClipboardCheck />
-              </button>
+              <CopyButton boxShadow={boxShadowResult} />
             </div>
           </div>
         </div>

@@ -1,0 +1,15 @@
+/* ========================================
+  Toastify
+======================================== */
+
+.toastify-success,
+.toastify-error {
+  color: #ffffff;
+}
+.toastify-success {
+  background: #e82077;
+}
+
+.toastify-error {
+  background: rgb(220, 53, 69);
+}
