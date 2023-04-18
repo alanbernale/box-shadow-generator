@@ -3,6 +3,8 @@ import { IconClipboardCheck } from '@tabler/icons-react'
 import GithubCorner from 'react-github-corner'
 import hexToRgb from './hexToRgb'
 import './App.css'
+import Toastify from 'toastify-js'
+import 'toastify-js/src/toastify.css'
 
 function App () {
   const [dark, setDark] = useState(false)
@@ -22,6 +24,25 @@ function App () {
   const handleOpacity = (e) => setOpacity(e.target.value)
 
   const boxShadow = offsetX + 'px' + ' ' + offsetY + 'px' + ' ' + blurRadius + 'px' + ' ' + spreadRadius + 'px' + ' rgba(' + hexToRgb(color) + ',' + opacity + ')'
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(boxShadow)
+      .then(() => {
+        Toastify({
+          text: '😁 Se copió el código al portapapeles.',
+          position: 'left',
+          className: 'toastify-success'
+        }).showToast()
+      })
+      .catch(err => {
+        console.error(err.message)
+        Toastify({
+          text: '⚠️ ¡Ups! Sucedió algo, inténtalo nuevamente.',
+          position: 'left',
+          className: 'toastify-error'
+        }).showToast()
+      })
+  }
 
   return (
     <div className={dark ? 'application dark' : 'application'}>
@@ -196,7 +217,7 @@ function App () {
               <div className='application__code'>
                 box-shadow: {boxShadow}
               </div>
-              <button type='button' className='application__copy'>
+              <button type='button' className='application__copy' onClick={handleCopy}>
                 Copy <IconClipboardCheck />
               </button>
             </div>
